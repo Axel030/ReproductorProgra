@@ -94,7 +94,7 @@ namespace MP3
         private void Button5_Click(object sender, EventArgs e)
         {
             //nuevo cliente de Youtube
-            var client = new YoutubeClient();
+            var client = new YoutubeClient();s
             //lee la dirección de youtube que le escribimos en el textbox
             var videoId = NormalizeVideoId(txtURL.Text);
             var video = await client.GetVideoAsync(videoId);
