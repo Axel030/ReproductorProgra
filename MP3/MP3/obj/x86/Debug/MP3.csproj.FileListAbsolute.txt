@@ -44,9 +44,12 @@ C:\Users\pablo\Documents\GitHub\ReproductorProgra\MP3\MP3\obj\x86\Debug\Interop.
 C:\Users\pablo\Documents\GitHub\ReproductorProgra\MP3\MP3\obj\x86\Debug\AxInterop.WMPLib.dll
 C:\Users\pablo\Documents\GitHub\ReproductorProgra\MP3\MP3\obj\x86\Debug\MP3.csproj.ResolveComReference.cache
 C:\Users\pablo\Documents\GitHub\ReproductorProgra\MP3\MP3\obj\x86\Debug\MP3.Form1.resources
-C:\Users\pablo\Documents\GitHub\ReproductorProgra\MP3\MP3\obj\x86\Debug\MP3.Lista.resources
 C:\Users\pablo\Documents\GitHub\ReproductorProgra\MP3\MP3\obj\x86\Debug\MP3.Properties.Resources.resources
 C:\Users\pablo\Documents\GitHub\ReproductorProgra\MP3\MP3\obj\x86\Debug\MP3.csproj.GenerateResource.cache
 C:\Users\pablo\Documents\GitHub\ReproductorProgra\MP3\MP3\obj\x86\Debug\MP3.csproj.CoreCompileInputs.cache
 C:\Users\pablo\Documents\GitHub\ReproductorProgra\MP3\MP3\obj\x86\Debug\MP3.exe
 C:\Users\pablo\Documents\GitHub\ReproductorProgra\MP3\MP3\obj\x86\Debug\MP3.pdb
+C:\Users\pablo\Documents\GitHub\ReproductorProgra\MP3\MP3\bin\Debug\MP3.exe
+C:\Users\pablo\Documents\GitHub\ReproductorProgra\MP3\MP3\bin\Debug\MP3.pdb
+C:\Users\pablo\Documents\GitHub\ReproductorProgra\MP3\MP3\bin\Debug\Interop.WMPLib.dll
+C:\Users\pablo\Documents\GitHub\ReproductorProgra\MP3\MP3\bin\Debug\AxInterop.WMPLib.dll

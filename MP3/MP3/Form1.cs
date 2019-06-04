@@ -7,13 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
-using 
+
 
 
 namespace MP3
 {
     public partial class Form1 : Form
     {
+        string[] rutas, archivos;
         public Form1()
         {
             InitializeComponent();
@@ -25,74 +26,99 @@ namespace MP3
         {
             reproductor.uiMode = "invisible";
         }
-        
+
         //Reproducir A través de Windows Player
         private void button1_Click(object sender, EventArgs e)
-        {           
+        {
+            OpenFileDialog abrir = new OpenFileDialog();
+            abrir.Multiselect = true;
+            if (abrir.ShowDialog() == DialogResult.OK){
+                archivos = abrir.SafeFileNames;
+                rutas = abrir.FileNames;
+                reproductor.URL = openFileDialog1.FileName;
 
-            if (openFileDialog1.ShowDialog() == DialogResult.OK)
-            {
-                reproductor.URL = openFileDialog1.FileName;                 
+                foreach (var s in archivos)
+                {
+                    listBox1.Items.Add(s);
+
+
+                }
+                reproductor.URL = rutas[0];
+                listBox1.SelectedIndex = 0;
             }
-            reproductor.Ctlcontrols.play();
         }
-      
+
 
         //Detener la reproducción en Windows Player
         private void button2_Click(object sender, EventArgs e)
         {
             reproductor.Ctlcontrols.stop();
         }
-
-
-        //DLL a utilizar para poder reproducir MP3
-       [DllImport("winmm.dll")]
-
-        //Método externo (esta definido en winmm.dll) tipo long que se encargara de enviar comandos al MCI
-        private static extern long mciSendString(string strCommand, StringBuilder strReturn, int iReturnLength, IntPtr hwndCallback);
-
-
-        //Método para reproducir MP3 a través de MCI
-        //Recibe: Nombre y ruta del archivo a reproducir
-        public void PlayMP3(string rutaArchivo)
-        {
-            //Comandos multimedia de MCI http://msdn.microsoft.com/en-us/library/ms712587        
-
-            //Abrir el dispositivo MCI
-            //miMP3 es el alias con el que manejaremos el archivo MP3 recibido como parametro en rutaArchivo
-            string comandoMCI = string.Format("open \"{0}\" type mpegvideo alias miMP3", rutaArchivo);
-            //a traves de mciSendString, enviamos el comando anterior, para abrir el dispositivo MCO
-            mciSendString(comandoMCI, null, 0, IntPtr.Zero);
-            //Ahora en comandoMCI daremos la orden de reproducir el archivo, recordando que lo hacemos
-            //a traves del alias que definimos anteriormente miMP3
-            comandoMCI = "play miMP3";
-            //enviamos a ejecutar el comando play
-            mciSendString(comandoMCI, null, 0, IntPtr.Zero);
-        }
-
-       //Reproducir a través de MCI, 
-        //Envia: el nombre del archivo se envia hacia el método PlayMP3
         private void button3_Click(object sender, EventArgs e)
         {
-            if (openFileDialog1.ShowDialog() == DialogResult.OK)
-            {
-                PlayMP3(openFileDialog1.FileName); 
-            }
-            
+           
 
         }
 
         //Detener la reproducción del MP3 en el MCI
         private void button4_Click(object sender, EventArgs e)
         {
-            //Comandos multimedia de MCI http://msdn.microsoft.com/en-us/library/ms712587            
-            //el comando es stop y se le envia al alias miMP3, que se definio cuando se dio Play
-            string comandoMCI = "stop miMP3";
-            //Enviar el comando stop al MCI
-            mciSendString(comandoMCI, null, 0, IntPtr.Zero);
+            
+        }
+
+        private void ListBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            reproductor.URL = rutas[listBox1.SelectedIndex];
+            lblCancion.Text = archivos[listBox1.SelectedIndex];
         }
 
         private void Button5_Click(object sender, EventArgs e)
         {
-          }
+        }
+        static TimeSpan tiempo;
+        private void Timer1_Tick(object sender, EventArgs e)
+        {
+            ActualizarDatosTrack();
+            tiempo = TimeSpan.FromSeconds(reproductor.Ctlcontrols.currentPosition);
+            label3.Text = tiempo.ToString("mm\\:ss");
+            trackBarTiempo.Value = (int)reproductor.Ctlcontrols.currentPosition;
+            trackBarSonido.Value = reproductor.settings.volume;
+        }
+
+        private void Reproductor_PlayStateChange(object sender, AxWMPLib._WMPOCXEvents_PlayStateChangeEvent e)
+        {
+            ActualizarDatosTrack();
+        }
+
+        private void TrackBarSonido_ValueChanged(object sender, EventArgs e)
+        {
+            reproductor.settings.volume = trackBarSonido.Value;
+        }
+
+        public void ActualizarDatosTrack()
+        {
+           
+            if (reproductor.playState == WMPLib.WMPPlayState.wmppsPlaying)
+            {
+                trackBarTiempo.Maximum=(int)reproductor.Ctlcontrols.currentItem.duration;
+                double s = (int)reproductor.Ctlcontrols.currentItem.duration;
+                TimeSpan p = TimeSpan.FromSeconds(s);
+                label4.Text = p.ToString("mm\\:ss");
+                timer1.Start();
+               
+
+            }
+            else if(reproductor.playState == WMPLib.WMPPlayState.wmppsPaused)
+            {
+                timer1.Stop();
+            }
+            else if (reproductor.playState == WMPLib.WMPPlayState.wmppsStopped)
+            {
+                timer1.Stop();
+                label3.Text = "00:00";
+                tiempo = TimeSpan.Zero;
+                trackBarTiempo.Value = 0;
+            }
+        }
+    }
 }
