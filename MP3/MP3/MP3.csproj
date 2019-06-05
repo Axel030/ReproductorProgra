@@ -53,7 +53,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ClassLista.cs" />
-    <Compile Include="ClassTodasLas Listas.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>

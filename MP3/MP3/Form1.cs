@@ -25,19 +25,7 @@ namespace MP3
         private void Form1_Load(object sender, EventArgs e)
         {
             reproductor.uiMode = "invisible";
-            List<ClassLista> listaLibro = new List<ClassLista>();
-            //Leer el archivo
-            FileStream stream = new FileStream("Listas.json", FileMode.Open, FileAccess.Read);
-            StreamReader reader = new StreamReader(stream);
-            while (reader.Peek() > -1)
-            {
-                string lectura = reader.ReadLine();
-                ClassLista libroLeido = JsonConvert.DeserializeObject<ClassLista>(lectura);
-                listaLibro.Add(libroLeido);
-            }
-            reader.Close();
-            comboBox1.Items.Add(listaLibro);
-            comboBox1.SelectedIndex = 0;
+           
         }
 
         //Reproducir A través de Windows Player
@@ -125,6 +113,30 @@ namespace MP3
 
             MessageBox.Show("Ingresado Exitosamente!!");
             
+        }
+
+        private void DataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void Button8_Click(object sender, EventArgs e)
+        {
+            //Una lista de objetos libro
+            List<ClassLista> listaLibro = new List<ClassLista>();
+            //Leer el archivo
+            FileStream stream = new FileStream("Listas.json", FileMode.Open, FileAccess.Read);
+            StreamReader reader = new StreamReader(stream);
+            while (reader.Peek() > -1)
+            {
+                string lectura = reader.ReadLine();
+                ClassLista libroLeido = JsonConvert.DeserializeObject<ClassLista>(lectura);
+                listaLibro.Add(libroLeido);
+            }
+            reader.Close();
+            //Mostrar la lista de libros en el gridview
+            dataGridView1.DataSource = listaLibro;
+            dataGridView1.Refresh();
         }
 
         public void ActualizarDatosTrack()
