@@ -7,8 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
-
-
+using Newtonsoft.Json;
+using System.IO;
 
 namespace MP3
 {
@@ -25,6 +25,19 @@ namespace MP3
         private void Form1_Load(object sender, EventArgs e)
         {
             reproductor.uiMode = "invisible";
+            List<ClassLista> listaLibro = new List<ClassLista>();
+            //Leer el archivo
+            FileStream stream = new FileStream("Listas.json", FileMode.Open, FileAccess.Read);
+            StreamReader reader = new StreamReader(stream);
+            while (reader.Peek() > -1)
+            {
+                string lectura = reader.ReadLine();
+                ClassLista libroLeido = JsonConvert.DeserializeObject<ClassLista>(lectura);
+                listaLibro.Add(libroLeido);
+            }
+            reader.Close();
+            comboBox1.Items.Add(listaLibro);
+            comboBox1.SelectedIndex = 0;
         }
 
         //Reproducir A través de Windows Player
@@ -52,11 +65,11 @@ namespace MP3
         //Detener la reproducción en Windows Player
         private void button2_Click(object sender, EventArgs e)
         {
-            reproductor.Ctlcontrols.stop();
+            reproductor.Ctlcontrols.play();
         }
         private void button3_Click(object sender, EventArgs e)
         {
-           
+            reproductor.Ctlcontrols.stop();
 
         }
 
@@ -93,6 +106,25 @@ namespace MP3
         private void TrackBarSonido_ValueChanged(object sender, EventArgs e)
         {
             reproductor.settings.volume = trackBarSonido.Value;
+        }
+
+        private void Button6_Click(object sender, EventArgs e)
+        {
+            //Declarar un objeto de Clase Libro
+            ClassLista AlquilerJson = new ClassLista();
+            //Asginarle valores al libro
+            AlquilerJson.NombreLista = textBox1.Text;
+           
+            //Convertir el objeto en una cadena JSON
+            string salida = JsonConvert.SerializeObject(AlquilerJson);
+            //guardar el archivo de texto, con extension json            
+            FileStream stream = new FileStream("Listas.json", FileMode.Append, FileAccess.Write);
+            StreamWriter writer = new StreamWriter(stream);
+            writer.WriteLine(salida);
+            writer.Close();
+
+            MessageBox.Show("Ingresado Exitosamente!!");
+            
         }
 
         public void ActualizarDatosTrack()
