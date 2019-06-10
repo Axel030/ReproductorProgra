@@ -139,6 +139,86 @@ namespace MP3
             dataGridView1.Refresh();
         }
 
+        private async void Button9_ClickAsync(object sender, EventArgs e)
+        {
+            //nuevo cliente de Youtube
+            var client = new YoutubeClient();
+            //lee la dirección de youtube que le escribimos en el textbox
+            var videoId = NormalizeVideoId(textBox2.Text); //normaliza
+            var video = await client.GetVideoAsync(videoId); //descarga el video
+            var streamInfoSet = await client.GetVideoMediaStreamInfosAsync(videoId); //descarga la informacion del video
+
+            // Busca la mejor resolución en la que está disponible el video
+            var streamInfo = streamInfoSet.Muxed.WithHighestVideoQuality(); //descarga el video con la maxima calidad
+
+            // Compone el nombre que tendrá el video en base a su título y extensión
+            var fileExtension = streamInfo.Container.GetFileExtension(); //mira la extencion mp4
+            var fileName = $"{video.Title}.{fileExtension}"; //agrega el titulo del video y la extencion mp4
+
+            //TODO: Reemplazar los caractéres ilegales del nombre
+            //fileName = RemoveIllegalFileNameChars(fileName);
+
+            //Activa el timer para que el proceso funcione de forma asincrona
+            timer1.Enabled = true;
+
+            // mensajes indicando que el video se está descargando
+            labelEstadoDescarga.Text = "Descargando el video ... "; //mensaje 
+
+            //TODO: se pude usar una barra de progreso para ver el avance
+            //using (var progress = new ProgressBar())
+
+            //Empieza la descarga
+            await client.DownloadMediaStreamAsync(streamInfo, fileName); //empieza la descarga
+
+            //Ya descargado se inicia la conversión a MP3
+            var Convert = new NReco.VideoConverter.FFMpegConverter(); //convierte el video
+            //Especificar la carpeta donde se van a guardar los archivos, recordar la \ del final
+            String SaveMP3File = @"D:\DescargarMP3\" + fileName.Replace(".mp4", ".mp3"); //en donde se va a guardar el archivo
+            //Guarda el archivo convertido en la ubicación indicada
+            Convert.ConvertMedia(fileName, SaveMP3File, "mp3");
+
+            //Si el checkbox de solo audio está chequeado, borrar el mp4 despues de la conversión
+            if (checkBox1.Checked) //funcion checkbox
+                File.Delete(fileName); // si quemos solo el audio manda a borrar el mp4 y nos quedamos con el mp3
+
+
+            //Indicar que se terminó la conversion
+            labelEstadoDescarga.Text = "Archivo Convertido en MP3";
+            timer1.Enabled = false;
+            labelEstadoDescarga.BackColor = Color.White;
+
+            //TODO: Cargar el MP3 al reproductor o a la lista de reproducción
+            //CargarMP3s();
+            //Se puede incluir un checkbox para indicar que de una vez se reproduzca el MP3
+            //if (ckbAutoPlay.Checked) 
+            //  ReproducirMP3(SaveMP3File);
+
+
+            //Declarar un objeto de Clase cliente
+            ClassCancion cancionJson = new ClassCancion();
+
+            //Asignarle valores al cliente
+            cancionJson.DireccionCancion = SaveMP3File;
+            cancionJson.NombreCancion = fileName;
+
+            //Convertir el objeto en una cadena JSON
+            string salida = JsonConvert.SerializeObject(cancionJson);
+            //Guardar el archivo de texto, con extension Json
+            FileStream stream = new FileStream("Cancion.json", FileMode.OpenOrCreate, FileAccess.Write);
+            StreamWriter writer = new StreamWriter(stream);
+            MessageBox.Show("La Canción: " + cancionJson.NombreCancion + " Se Registro Correctamente");
+
+            writer.WriteLine(salida);
+            writer.Close();
+
+            return;
+        }
+
+        private void ListBox1_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+
+        }
+
         public void ActualizarDatosTrack()
         {
            

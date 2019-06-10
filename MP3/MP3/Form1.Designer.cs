@@ -38,7 +38,6 @@
             this.btnStop = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
-            this.listBox1 = new System.Windows.Forms.ListBox();
             this.trackBarTiempo = new System.Windows.Forms.TrackBar();
             this.trackBarSonido = new System.Windows.Forms.TrackBar();
             this.label3 = new System.Windows.Forms.Label();
@@ -55,8 +54,15 @@
             this.button5 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.button7 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
+            this.button9 = new System.Windows.Forms.Button();
+            this.label9 = new System.Windows.Forms.Label();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.labelEstadoDescarga = new System.Windows.Forms.Label();
+            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.button7 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.reproductor)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarTiempo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarSonido)).BeginInit();
@@ -75,7 +81,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(566, 178);
+            this.button1.Location = new System.Drawing.Point(642, 176);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(88, 57);
             this.button1.TabIndex = 1;
@@ -133,15 +139,6 @@
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
-            // listBox1
-            // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(566, 12);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(216, 160);
-            this.listBox1.TabIndex = 7;
-            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.ListBox1_SelectedIndexChanged);
-            // 
             // trackBarTiempo
             // 
             this.trackBarTiempo.Location = new System.Drawing.Point(15, 266);
@@ -154,7 +151,7 @@
             // trackBarSonido
             // 
             this.trackBarSonido.BackColor = System.Drawing.SystemColors.Control;
-            this.trackBarSonido.Location = new System.Drawing.Point(392, 317);
+            this.trackBarSonido.Location = new System.Drawing.Point(444, 310);
             this.trackBarSonido.Maximum = 100;
             this.trackBarSonido.Name = "trackBarSonido";
             this.trackBarSonido.Orientation = System.Windows.Forms.Orientation.Vertical;
@@ -216,7 +213,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(431, 159);
+            this.button2.Location = new System.Drawing.Point(377, 129);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(121, 23);
             this.button2.TabIndex = 16;
@@ -225,7 +222,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(431, 188);
+            this.button3.Location = new System.Drawing.Point(377, 158);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(121, 23);
             this.button3.TabIndex = 17;
@@ -235,7 +232,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(12, 57);
+            this.label7.Location = new System.Drawing.Point(13, 12);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(107, 13);
             this.label7.TabIndex = 18;
@@ -244,7 +241,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(12, 88);
+            this.label8.Location = new System.Drawing.Point(13, 43);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(119, 13);
             this.label8.TabIndex = 19;
@@ -252,14 +249,14 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(138, 88);
+            this.textBox1.Location = new System.Drawing.Point(139, 43);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(136, 20);
             this.textBox1.TabIndex = 20;
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(431, 218);
+            this.button5.Location = new System.Drawing.Point(377, 188);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(121, 45);
             this.button5.TabIndex = 21;
@@ -268,7 +265,7 @@
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(138, 57);
+            this.button6.Location = new System.Drawing.Point(139, 12);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(136, 23);
             this.button6.TabIndex = 22;
@@ -285,15 +282,6 @@
             this.dataGridView1.TabIndex = 23;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView1_CellContentClick);
             // 
-            // button7
-            // 
-            this.button7.Location = new System.Drawing.Point(660, 178);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(88, 57);
-            this.button7.TabIndex = 24;
-            this.button7.Text = "Mostrar canciones de la bilbioteca";
-            this.button7.UseVisualStyleBackColor = true;
-            // 
             // button8
             // 
             this.button8.Location = new System.Drawing.Point(444, 7);
@@ -304,13 +292,93 @@
             this.button8.UseVisualStyleBackColor = true;
             this.button8.Click += new System.EventHandler(this.Button8_Click);
             // 
+            // button9
+            // 
+            this.button9.Location = new System.Drawing.Point(12, 119);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(75, 23);
+            this.button9.TabIndex = 27;
+            this.button9.Text = "Descargar";
+            this.button9.UseVisualStyleBackColor = true;
+            this.button9.Click += new System.EventHandler(this.Button9_ClickAsync);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(13, 100);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(32, 13);
+            this.label9.TabIndex = 28;
+            this.label9.Text = "URL:";
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(51, 93);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(213, 20);
+            this.textBox2.TabIndex = 29;
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(96, 119);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(48, 17);
+            this.checkBox1.TabIndex = 30;
+            this.checkBox1.Text = "MP3";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // labelEstadoDescarga
+            // 
+            this.labelEstadoDescarga.AutoSize = true;
+            this.labelEstadoDescarga.Location = new System.Drawing.Point(12, 149);
+            this.labelEstadoDescarga.Name = "labelEstadoDescarga";
+            this.labelEstadoDescarga.Size = new System.Drawing.Size(13, 13);
+            this.labelEstadoDescarga.TabIndex = 31;
+            this.labelEstadoDescarga.Text = "--";
+            // 
+            // listBox1
+            // 
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.Location = new System.Drawing.Point(607, 36);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(160, 134);
+            this.listBox1.TabIndex = 32;
+            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.ListBox1_SelectedIndexChanged_1);
+            // 
+            // checkBox2
+            // 
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.Location = new System.Drawing.Point(504, 135);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(94, 17);
+            this.checkBox2.TabIndex = 33;
+            this.checkBox2.Text = "solo Biblioteca";
+            this.checkBox2.UseVisualStyleBackColor = true;
+            // 
+            // button7
+            // 
+            this.button7.Location = new System.Drawing.Point(363, 318);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(75, 23);
+            this.button7.TabIndex = 34;
+            this.button7.Text = "Back";
+            this.button7.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(796, 405);
-            this.Controls.Add(this.button8);
             this.Controls.Add(this.button7);
+            this.Controls.Add(this.checkBox2);
+            this.Controls.Add(this.listBox1);
+            this.Controls.Add(this.labelEstadoDescarga);
+            this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.button9);
+            this.Controls.Add(this.button8);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.button6);
             this.Controls.Add(this.button5);
@@ -326,7 +394,6 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.trackBarSonido);
             this.Controls.Add(this.trackBarTiempo);
-            this.Controls.Add(this.listBox1);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnStop);
@@ -356,7 +423,6 @@
         private System.Windows.Forms.Button btnStop;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.TrackBar trackBarTiempo;
         private System.Windows.Forms.TrackBar trackBarSonido;
         private System.Windows.Forms.Label label3;
@@ -373,8 +439,15 @@
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.Label labelEstadoDescarga;
+        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.CheckBox checkBox2;
+        private System.Windows.Forms.Button button7;
     }
 }
 
